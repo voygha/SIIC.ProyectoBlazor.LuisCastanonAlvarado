@@ -1,0 +1,82 @@
+﻿@page "/empleados"
+<form>
+    <div class="row">
+
+
+        <div class="col">
+            <input type="text" class="form-control" placeholder="RFC" @bind="Empleado.rfc">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Nombre" @bind="Empleado.nombre">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Apellidos" @bind="Empleado.apellidos">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Direccion" @bind="Empleado.direccion">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Telefono" @bind="Empleado.telefono">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Correo" @bind="Empleado.correo">
+        </div>
+        
+    </div>
+
+    <br>
+    <button type="reset" class="btn btn-success" @onclick="GuardarEmpleado">Agregar Empleado</button>
+    <button type="reset" class="btn btn-success" @onclick="ActualizarEmpleados">Actualizar Empleado</button>
+
+</form>
+<br>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>rfc</th>
+            <th>nombre</th>
+            <th>apellidos</th>
+            <th>direccion</th>
+            <th>telefono</th>
+            <th>correo</th>
+            <th>activo</th>
+            <th>idEmpresa</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in ListEmpleados)
+        {
+        <tr>
+            <td>@item.id</td>
+            <td>@item.rfc</td>
+            <td>@item.nombre</td>
+            <td>@item.apellidos</td>
+            <td>@item.direccion</td>
+            <td>@item.telefono</td>
+            <td>@item.correo</td>
+            <td>@item.activo</td>
+            <td>@item.idEmpresa</td>
+            <br>
+            <button class="btn btn-primary btn-sm btn-block" @onclick="(()=>EditarEmpleado(item))">
+                Editar
+                <FeatherEdit3 Size="20" Color="#ffffff" StrokeWidth="1.8f" />
+            </button>
+            <button class="btn btn-danger btn-sm btn-block" @onclick="(()=>EliminarEmpleado(item))">
+                Eliminar
+                <FeatherTrash Size="20" Color="#ffffff" StrokeWidth="1.8f" />
+            </button>
+
+            <br>
+
+        </tr>
+        }
+    </tbody>
+</table>

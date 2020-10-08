@@ -1,0 +1,81 @@
+﻿@page "/empresas"
+
+<form>
+    <div class="row">
+
+
+        <div class="col">
+            <input type="text" class="form-control" placeholder="RFC" @bind="Empresa.rfc">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Razón Social" @bind="Empresa.razonSocial">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Nombre Comercial" @bind="Empresa.nombreComercial">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Direccion" @bind="Empresa.direccion">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Telefono" @bind="Empresa.telefono">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Correo" @bind="Empresa.correo">
+        </div>
+    </div>
+
+    <br>
+    <button type="reset" class="btn btn-success" @onclick="GuardarEmpresa">Agregar Empresa</button>
+    <button type="reset" class="btn btn-success" @onclick="ActualizarEmpresa">Actualizar Empresa</button>
+
+</form>
+<br>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>idSucursal</th>
+            <th>rfc</th>
+            <th>Razon social</th>
+            <th>Nombre comercial</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Operaciones</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in ListEmpresas)
+        {
+            <tr>
+                <th>@item.id</th>
+                <td>@item.idSucursal</td>
+                <td>@item.rfc</td>
+                <td>@item.razonSocial</td>
+                <td>@item.nombreComercial</td>
+                <td>@item.direccion</td>
+                <td>@item.telefono</td>
+                <td>@item.correo</td>
+                <br>
+                <button class="btn btn-primary btn-sm btn-block" @onclick="(()=>EditarEmpresa(item))">
+                    Editar
+                    <FeatherEdit3 Size="20" Color="#ffffff" StrokeWidth="1.8f" />
+                </button>
+                <button class="btn btn-danger btn-sm btn-block" @onclick="(()=>EliminarEmpresa(item))">
+                    Eliminar
+                    <FeatherTrash Size="20" Color="#ffffff" StrokeWidth="1.8f" />
+                </button>
+
+                <br>
+
+            </tr>
+        }
+    </tbody>
+</table>
